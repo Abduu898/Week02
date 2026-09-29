@@ -27,8 +27,7 @@ def play():
     print()
 
     while True:
-        print(show_word(secret, guessed), " || ", penalties,
-              "penalty" if penalties == 1 else "penalties")
+        print(show_word(secret, guessed), " || ", penalties,"penalty" if penalties == 1 else "penalties")
         won = True
         for letter in secret:
             if letter not in guessed:
