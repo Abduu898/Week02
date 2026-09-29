@@ -2,6 +2,7 @@ import random
 from english_words import english_words_lower_set
 
 from firstBrick import you_lose
+from hangman_themes import choose_theme, max_penalties_for
 from secondBrick import random_item
 from thirdBrick import underscore
 history = []
@@ -151,3 +152,59 @@ print("Win rate:", round(win_rate(history), 1), "%")
 print("Average penalties on wins:", round(avg_penalties_on_wins(history), 1))
 print("Longest word found:", longest_word_won(history))
 
+def play():
+    theme = choose_theme()
+    words = theme[theme]
+    secret = random.choice(words)
+    max_penalties = max_penalties_for(secret)
+
+    guessed = []
+    penalties = 0
+
+    print()
+    print("Theme:", theme)
+    print("Max penalties:", max_penalties)
+    print()
+
+    while True:
+        print(show_word(secret, guessed), " || ", penalties, "penalties")
+
+        won = True
+        for letter in secret:
+            if letter not in guessed:
+                won = False
+                break
+        if won:
+            print("You win! The word was:", secret)
+            return
+
+        if penalties >= max_penalties:
+            print("You lose! The word was:", secret)
+            return
+
+        guess = input(">> ").strip().lower()
+
+        if guess == "":
+            continue
+
+        if len(guess) == 1:
+            if guess in guessed:
+                print("You already tried", guess.upper())
+                continue
+            guessed.append(guess)
+            if guess in secret:
+                print("Found one '" + guess.upper() + "'")
+            else:
+                penalties = penalties + 1
+                print("No '" + guess.upper() + "' found")
+        else:
+            if guess == secret:
+                print(guess.upper() + ": correct guess")
+                print("You win! The word was:", secret)
+                return
+            else:
+                penalties = penalties + 5
+                print(guess.upper() + ": incorrect guess")
+
+
+play()
