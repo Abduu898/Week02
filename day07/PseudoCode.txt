@@ -1,0 +1,35 @@
+1. Pick a random secret word.
+
+2. Start with:
+       - an empty list of guessed letters
+       - 0 penalties
+
+3. Loop forever:
+
+    a. Show the word:
+           - letters already guessed → show them
+           - letters not guessed yet → show "_"
+
+    b. Also show the penalty count.
+
+    c. If all letters are guessed:
+           → say "You win!"
+           → stop
+
+    d. If penalties are 12 or more:
+           → say "You lose!"
+           → stop
+
+    e. Ask the player for a guess.
+
+    f. If the guess is one letter:
+           - if already guessed → say so, no penalty
+           - if in the word → reveal it
+           - if not in the word → add 1 penalty
+
+    g. If the guess is a whole word:
+           - if correct → say "You win!"
+           - if wrong → add 5 Penalties
+
+
+           
