@@ -19,3 +19,5 @@ def most_frequent(word):
             best_letter = ch
 
     return best_letter
+
+print(frequency("banana"))
